@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {%load static%}
+<!-- document title-->
+{% block title %} Confirmation {% endblock title %}
+<!-- document body -->
+{% block body %}
+{% include 'navbar.html' %}
+  <main id="main">
+    <section id="body_intro" class="d-flex flex-column justify-content-center">
+      <div class="container-fluid">
+        <div class="row  align-items-center justify-content-center">
+            <div class="col-6 col-8 align-items-center justify-content-center bg-light d-flex rounded-3" style="height:320px">
+                    <h2 class="h3 text-center"><span>Please confirm that you are sending</span>  <br>
+                    <span>Tsh. {{ amount }}</span> <br> <span>to</span> <br> Account No. {{ receiver }} <br>
+                        Name. {{ receiver.account_holder }} </h2>
+                </div>
+            <div class="row  align-items-center justify-content-center">
+                <div class="col-6 align-items-center justify-content-center">
+                    <div class="mb-4 text-center">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="sender" value="{{ sender }}"/>
+                        <input type="hidden" name="receiver" value="{{ receiver }}"/>
+                        <input type="hidden" name="amount" value="{{ amount }}"/>
+                        <br>
+                            <button class="crdb-btn" style="width:25%"><a class="nav-link" href="{% url 'send_fund' %}"> No </a></button>
+                            <button type="submit" class="crdb-btn" style="width:25%">Yes </button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock body  %}

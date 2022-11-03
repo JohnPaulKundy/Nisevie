@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {%load static%}
+<!-- document title-->
+{% block title %} Registration {% endblock title %}
+{% include 'pre_loader.html' %}
+<!-- document body -->
+{% block body %}
+
+<body id="hero" class="d-flex flex-column justify-content-center">
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <section>
+    <div class="container" data-aos="zoom-in" data-aos-delay="5">
+      <div class="row">
+        <div class="col-sm-12 col-md-5">
+          <h1>Nisevie</h1>
+          <p>
+            <span
+              class="typed"
+              data-typed-items="Overspending disrupts financial trajectory, We help you avoid that,
+                                Give us your plan, and let us save for you"
+            ></span>
+          </p>
+        </div>
+
+        <div class="col-sm-12 col-md-6">
+          <div class="container">
+            <div class="card-body">
+              <form method="post">
+                {% csrf_token %}
+              <div class="form-outline mb-4">
+                <span class="section-title h1">Registration</span>
+              </div>
+              <div class="form-outline m-2" id="mobile_input">
+                <label class="form-label">Phone number</label>
+                <input type='text' class="form-control" name="username" required/>
+                <br>
+                <label class="form-label">Account number</label>
+                <input type='text' class="form-control" name="account_number" required/>
+                <br>
+                <div class="row">
+                    <div class="col">
+                      <label class="form-label">First Name</label>
+                        <input type='text' class="form-control" name="first_name" required/>
+                    </div>
+                    <div class="col">
+                      <label class="form-label">Last Name</label>
+                        <input type='text' class="form-control" name="last_name" required/>
+                    </div>
+                  </div>
+                <br>
+                <label class="form-label">Password</label>
+                <input type='password' class="form-control" name="password" required/>
+                <input type='submit' class="btn btn-sm btn-success float-right mt-2" id="btn_login" value="Register"/>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock body %}
+  <!-- page preloader -->
+</body>

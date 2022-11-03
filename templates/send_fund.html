@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {%load static%}
+<!-- document title-->
+{% block title %} Control center {% endblock title %}
+{% include 'pre_loader.html' %}
+{% include 'navbar.html' %}
+<!-- document body -->
+{% block body %}
+<main>
+    <section class="d-flex flex-column" >
+      <div class="mb-4 text-center" data-aos="zoom" data-aos-delay="0"> 
+        <h3 class="h4 section-title">Real time fund saving on deposit</h3>
+          <h6 class="text-danger">{{ error }}</h6>
+        </div>
+            <div class="row mb-4" id="addsource" data-aos="zoom" data-aos-delay="1">
+            <div class="col">
+                <div style="width: 350px;margin:auto">
+
+                <form method="post">
+                    {% csrf_token %}
+                    <!-- Text input -->
+                    <div class="mb-4 text-center">
+                    <!-- Text input -->
+                    <div class="mb-4 text-center">
+                    <label class="form-label">Sender's Account No.</label>
+                    <input type="number" name="sender" class="form-control text-center" required/>
+                    </div>
+
+                    <!-- Text input -->
+                    <div class="mb-4 text-center">
+                      <label class="form-label">Reciever's Account No.</label>
+                        <input type="number" name="receiver_account"  class="form-control text-center" required/>
+                    </div>
+
+                    <!-- Number input -->
+                    <div class="mb-4 text-center">
+                    <label class="form-label">Amount</label>
+                    <input type="number" name="amount" class="form-control text-center" required/>
+                    </div>
+        
+                    <div class="mb-4 text-center">
+                    <button type="submit" class="crdb-btn crdb-color1" style="width:30%">Send</button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock body%}

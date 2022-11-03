@@ -1,0 +1,101 @@
+{% extends 'base.html' %} {%load static%}
+<!-- document title-->
+{% block title %} Plan Manager {% endblock title %}
+{% include 'pre_loader.html' %}
+<!-- document body -->
+{% block body %}
+{% include 'navbar.html' %}
+
+<main id="main">
+
+  <section id="body_intro" class="d-flex flex-column justify-content-center">
+    <div class="container" id="advisor_income_register">
+      <div class="row">
+        <h3 class="section-title"></h3>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+          <div class="col-12">
+            <h3 class="h4 section-title">Manage your Plans</h3>
+
+          </div>
+
+          <div class="col m-1 rounded">
+            <div id="income_stream" class="income_stream">
+              <!-- stream card -->
+              {% for plan in plans %}
+              <div class="row p-3 d-flex justify-content-center">
+                <div class="col-sm-10 my-2 ">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-8">
+                          <div class="stream-item">
+                            <div class="text-success text-bold mb-1">{{plan.plan_name}}</div>
+                            <div>Sender Account: <span> {{plan.sender_account}} </span></div>
+                            <div>Deduction amount: <span> {{plan.deduction_amount}} </span></div>
+                            {% if plan.status %}
+                            <div>Status: <span class="text-success text-bold">Active</span></div>
+                            {% else %}
+                            <div>Start Date:  <span class="text-success">{{plan.start_date}}</span></div>
+                            {% endif %}
+                            <div>End Date:  <span class="text-danger">{{plan.end_date}}</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+            <form method="post">
+                {% csrf_token %}
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-3">
+                  <label class="mb-2" >Plan Name<i class="bx bx-money color_accent"></i></label>
+                  <input type="text" name="plan_name" class="form-control" required>
+                </div>
+
+                <div class="col-md-6 form-group mb-3">
+                  <label class="mb-2" >Sender's Account<i class="bx bx-money color_accent"></i></label>
+                  <input type="number" name="sender_account" class="form-control" required>
+                </div>
+
+                  <div class="col-md-6 form-group mb-3">
+                  <label class="mb-2" >Deduction Amount<i class="bx bx-money color_accent"></i></label>
+                  <input type="number" name="deduction_amount" class="form-control" required>
+                </div>
+
+                <div class="col-md-6 form-group mb-3">
+                  <label class="mb-2">Start Date <i class="bx bxs-calendar color_accent"></i></label>
+                  <input type="date" name="start_date" class="form-control" value="{{ today }}" min="{{ today }}"
+                         required>
+                </div>
+
+                <div class="col-md-6 form-group mb-3">
+                  <label class="mb-2">End Date <i class="bx bxs-calendar color_accent"></i></label>
+                  <input type="date" name="end_date" class="form-control" value="{{ last_date }}"
+                         min="" required>
+                </div>
+
+                <div class="text-left"><button type="submit"
+                  id="add" class="btn btn-md rounded bg_accent text-white">Add</button>
+              </div>
+              </div>
+
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="{% static 'assets/js/user.js' %}" ></script>
+{% endblock body%}

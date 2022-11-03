@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {%load static%}
+<!-- document title-->
+{% block title %} Home {% endblock title %}
+{% include 'pre_loader.html' %}
+<!-- document body -->
+{% block body %}
+{% include 'navbar.html' %}
+<style>
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    background: #f2f3f5;
+    font-size: 14px;
+  }
+  
+  .dropdown-item:hover{
+    color: #3AAF4A;
+  }
+  
+  .dropdown-item {
+    border-radius: 5px;
+  } 
+  
+  .user-profile {
+    padding: 20px;
+    margin: 20px;
+    position: fixed;
+    right: 20px;
+    top: 80px;
+    z-index: 9998;
+    border: 0;
+    background: #f2f3f5;
+    transition: all 0.4s;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+</style>
+<div class="col dropdown user-profile">
+  <a href="#" id="profile"><i class="bx bx-user-circle"></i></a>
+<ul class="dropdown-menu" style="right:0">
+  <li class="p-1"><button class="dropdown-item" type="button" style="background-color: rgb(179, 178, 178)">
+    Account:{{ holder.account_number }}</button></li>
+  <li class="p-1"><button class="dropdown-item" type="button">Name: {{ request.user }}</button></li>
+  <li class="p-1"><button class="dropdown-item" type="button">Balance: {{ holder.account_balance }}</button></li>
+</ul>
+</div>
+<section id="hero" class="d-flex flex-column justify-content-center">
+  <div class="container" data-aos="zoom-in" data-aos-delay="5"> 
+    <div>
+      <div class="col">
+        <h1>CRDB Nisevie Service</h1>
+        <p><span class="typed" data-typed-items="Overspending often disrupts savings trajectory, We help you avoid that,
+         Let Your money grow, You're welcome"></span></p><br>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="{%static 'assets/js/user.js' %}"></script>
+{% endblock body %}
